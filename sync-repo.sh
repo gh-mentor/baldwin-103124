@@ -3,15 +3,15 @@
 
 # Steps: pull changes from remote repository, stage all changes, commit changes with message 'Updated', push changes to remote repository on branch 'main'.
 
-# Pull changes from remote repository on branch 'main'
-git pull origin main
+# Pull changes from remote repository
+git pull origin
 
 # Stage all changes
-git add .
+git stage .
 
 # Commit changes with message 'Updated'
 git commit -m "Updated"
 
 # Push changes to remote repository on branch 'main'
-git push origin main
+git push
 
