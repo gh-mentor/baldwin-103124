@@ -7,10 +7,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 """
 Create a function 'gendatapoints' that generates a set of 100 data points (x, f(x)) and returns them as a pandas data frame.
 Arguments:
-- 'x_range' is a tuple of two integers representing the rang0 e of x values to generate.
+- 'x_range' is a tuple of two integers representing the range of x values to generate.
 Returns:
 - A pandas data frame with two columns, 'x' and 'y'.
 Details:
@@ -27,11 +28,14 @@ Examples:
 """
 
 def gendata(x_range):
-
+    if not isinstance(x_range, tuple) or len(x_range) != 2 or not all(isinstance(i, int) for i in x_range):
+        raise ValueError('x_range must be a tuple of two integers')
+    if x_range[0] > x_range[1]:
+        raise ValueError('x_range[0] must be less than x_range[1]')
+    np.random.seed(0)
     x = np.random.randint(x_range[0], x_range[1], 100)
     y = x ** 1.5 + np.random.normal(0, 100, 100)
-    data = pd.DataFrame({'x': x, 'y': y})
-    data = data.sort_values('x')
+    data = pd.DataFrame({'x': x, 'y': y}).sort_values('x').reset_index(drop=True)
     return data
 
 
@@ -53,6 +57,8 @@ def plotdata(data):
     plt.xlabel('x')
     plt.ylabel('f(x)')
     plt.show()
+
+
 """
 Create a function 'main' that generates data points and plots them.
 Arguments:
@@ -67,3 +73,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
